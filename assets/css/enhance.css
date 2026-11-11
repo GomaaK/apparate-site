@@ -1,0 +1,128 @@
+/* Apparate enhancement layer. Loaded after the site's own stylesheet; nothing here changes the site's text, colours or layout rules except where noted as "readability". */
+
+/* ---------- 3D icon slots ---------- */
+.i3d{display:none;position:relative;width:var(--i,72px);height:var(--i,72px);flex:none;pointer-events:none}
+.i3d-on .i3d{display:block}
+.i3d-c{display:block;width:100%;height:100%}
+
+/* hero stats: icon above each number */
+.stat{position:relative}
+.stat .i3d{--i:60px;margin-bottom:12px}
+
+/* core values: the 3D icon replaces the small 2D circle (the SVG stays as the no-WebGL fallback) */
+.i3d-on .val .ic{width:104px;height:104px;margin-left:-10px;border-radius:0;background:transparent}
+.i3d-on .val:hover .ic{background:transparent}
+.i3d-on .val .ic>svg{display:none}
+.val .ic .i3d{--i:104px}
+
+/* methodology */
+.method article>.i3d{--i:76px;margin:0 0 6px -6px}
+
+/* process stages: icon bottom right, beside the big outline number */
+.stage .i3d{position:absolute;right:18px;bottom:22px;--i:112px}
+.stage .n{position:relative;z-index:0}
+
+/* quality gates */
+.gate{position:relative}
+.gate>.i3d{position:absolute;right:12px;top:10px;--i:64px}
+.i3d-on .gate .w{padding-right:56px}
+
+/* ---------- quick paths ---------- */
+.paths{background:var(--ink);padding:clamp(56px,7vw,96px) 0 0;position:relative;z-index:1}
+.paths+.products{padding-top:clamp(56px,6vw,90px)}
+.paths-top{margin-bottom:28px}
+.paths-h{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,3.4vw,46px);line-height:1.1;color:#fff;margin-top:12px}
+.paths-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.path{text-decoration:none;position:relative;display:flex;flex-direction:column;gap:4px;padding:22px 20px 20px;border-radius:8px;background:var(--ink-2);border:1px solid var(--line-d);color:#fff;overflow:hidden;transition:transform .45s var(--ease),border-color .3s,background .3s}
+.path::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--ease)}
+.path:hover,.path:focus-visible{transform:translateY(-4px);border-color:rgba(226,25,139,.7);background:var(--ink-3)}
+.path:hover::before,.path:focus-visible::before{transform:scaleX(1)}
+.path .i3d{--i:84px;margin:0 0 8px -8px}
+.path b,.path small{text-decoration:none}.path b{font-family:var(--f-display);font-weight:400;font-size:21px;line-height:1.15}
+.path small{color:#B9B9C4;font-size:15px;line-height:1.4}
+.path .go{position:absolute;right:18px;top:20px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.28);transition:background .3s,border-color .3s}
+.path .go::before{content:"";position:absolute;left:10px;top:16px;width:12px;height:2px;background:#fff}
+.path .go::after{content:"";position:absolute;left:15px;top:12.5px;width:7px;height:7px;border-top:2px solid #fff;border-right:2px solid #fff;transform:rotate(45deg)}
+.path:hover .go,.path:focus-visible .go{background:var(--grad);border-color:transparent}
+@media (max-width:1180px){.paths-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:620px){.paths-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.path{padding:16px 14px}.path .i3d{--i:68px}.path b{font-size:18px}.path small{font-size:14px}.path .go{display:none}}
+
+/* ---------- process jump ---------- */
+.pjump{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:16px}
+.pj-l{font-size:14px;color:#6A6A76;margin-right:6px;font-weight:500}
+.pjump button{display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:30px;border:1px solid var(--line);background:#fff;color:var(--text);font-size:14px;font-weight:500;cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.pjump button b{font-family:var(--f-display);font-weight:400;font-size:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--paper);color:var(--magenta);transition:background .25s,color .25s}
+.pjump button em{font-style:normal}
+.pjump button:hover{border-color:var(--magenta);transform:translateY(-1px)}
+.pjump button.on{background:var(--ink);color:#fff;border-color:var(--ink)}.pjump button.on b{background:var(--grad);color:#fff}
+.hs-track{padding-top:22px}
+@media (max-width:900px){.pjump{display:none}}
+@media (max-width:1280px){.pjump button em{display:none}.pjump button{padding:4px 6px 4px 4px}}
+
+/* ---------- section rail ---------- */
+.rail{position:fixed;right:14px;top:50%;transform:translateY(-50%) translateX(20px);z-index:44;display:none;flex-direction:column;gap:2px;padding:10px 6px;border-radius:30px;background:rgba(14,14,18,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);opacity:0;pointer-events:none;transition:opacity .4s,transform .4s var(--ease)}
+.rail.show{opacity:1;transform:translateY(-50%);pointer-events:auto}
+.rail a{position:relative;display:grid;place-items:center;width:28px;height:26px}
+.rail a::before{content:"";width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.42);transition:transform .3s,background .3s}
+.rail a.on::before{background:var(--grad);transform:scale(1.5)}
+.rail a span{position:absolute;right:38px;top:50%;transform:translateY(-50%) translateX(6px);white-space:nowrap;padding:6px 12px;border-radius:6px;background:#fff;color:#111;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.rail a:hover span,.rail a:focus-visible span{opacity:1;transform:translateY(-50%)}
+.rail a.on span{opacity:1;transform:translateY(-50%);background:var(--ink);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.rail:not(:hover) a.on span{opacity:0}
+@media (min-width:1240px){.rail{display:flex}}
+
+/* ---------- mobile start bar + back to top ---------- */
+.sbar{position:fixed;left:0;right:0;bottom:0;z-index:48;display:none;padding:8px 14px calc(8px + env(safe-area-inset-bottom,0px));background:rgba(14,14,18,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.12);transform:translateY(110%);transition:transform .4s var(--ease)}
+.sbar .btn{width:100%;justify-content:center;font-size:16px;padding:13px 18px;background:linear-gradient(90deg,#E2198B 0%,#8A55D6 55%,#0A86FF 100%);color:#fff;box-shadow:0 8px 24px -10px rgba(226,25,139,.7)}.sbar .btn::before{display:none}
+.sbar.show{transform:none}
+.totop{position:fixed;right:16px;bottom:18px;z-index:47;width:48px;height:48px;border-radius:50%;background:rgba(14,14,18,.85);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .3s;cursor:pointer}
+.totop i{position:absolute;left:17px;top:19px;width:12px;height:12px;border-top:2px solid #fff;border-left:2px solid #fff;transform:rotate(45deg)}
+.totop.show{opacity:1;pointer-events:auto;transform:none}.totop:hover{background:var(--magenta)}
+@media (max-width:900px){.sbar{display:block}.totop{bottom:78px}}
+
+/* ---------- readability ----------
+   The original uses its bright magenta and blue for small labels on both dark and light backgrounds; several fall under 4.5:1.
+   Small accent text gets a darker shade on light sections and a lighter shade on dark ones. Gradients, buttons and photos are untouched. */
+:root{--magenta:#FF4DA6;--blue:#4DA3FF}
+.light,.white,.hs,.gates,#gates,.method,#method{--magenta:#C4127A;--blue:#0A63CC}
+/* dark cards that sit inside light sections keep the light accent shades; the one light card inside the dark section keeps the dark shades */
+.stage.intro,.gate.on,.aq:first-child,.ship,.qcbadge,.capnum:first-child{--magenta:#FF4DA6;--blue:#4DA3FF}
+.vm article:last-child{--magenta:#C4127A;--blue:#0A63CC}
+.stage[data-phase="Plan"] .phase{color:#6E6E7A}
+.vs-col li .n{color:#E2A0C8}
+.chip{font-size:13.5px}
+.eyebrow{font-size:14px}
+.port{font-size:12px}
+.rail a{width:40px;height:34px}
+.rail a span{right:46px}
+/* ---------- readability (applies only to text the original shows very small or dim) ---------- */
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+:focus-visible{outline:2px solid #fff;outline-offset:3px;box-shadow:0 0 0 5px rgba(226,25,139,.7)}
+@media (prefers-reduced-motion:reduce){.path,.path::before,.rail,.sbar,.totop{transition:none}}
+
+/* keep phones from re-colouring the site: it is designed light and dark on purpose (no automatic night mode) */
+html{color-scheme:only light}
+
+/* chips are links everywhere: they look and behave like links */
+a.chip,a.mat{text-decoration:none;cursor:pointer;transition:border-color .25s,color .25s,background .25s}
+a.chip::after,a.mat::after{content:"\2192";margin-left:6px;font-size:.95em;opacity:.8;transition:transform .25s}
+a.chip:hover::after,a.mat:hover::after{transform:translateX(3px)}
+a.chip:focus-visible,a.mat:focus-visible{outline:2px solid var(--magenta);outline-offset:2px}
+.chips a.chip:hover{border-color:var(--magenta);color:var(--magenta)}
+.am .badge a.chip:hover,.lb .info .chips a.chip:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.14)}
+.serve a.chip:hover{background:#fff;color:var(--ink)}
+a.mat:hover{color:var(--magenta);border-color:var(--magenta)}
+.stage-more{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-weight:600;font-size:15px;color:var(--text);text-decoration:none;border-bottom:2px solid var(--magenta);padding-bottom:1px;align-self:flex-start}
+.stage-more:hover{color:var(--magenta)}.stage.intro .stage-more{color:#fff}
+/* tablets and touch screens wider than 900px: the process is a plain 2-column list (no pinned horizontal scroll) */
+@media (min-width:901px) and (hover:none){.hs-track{width:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding-inline:var(--gut)}.stage{width:auto;min-height:0}.stage.intro{grid-column:1/-1}.stage .n{font-size:80px;margin-top:20px}.hs-prog{display:none}}
+
+/* opening animation (three.js) */
+.ld3d{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity .8s ease;pointer-events:none}
+#loader.has3d .ld3d{opacity:1}
+#loader>div{position:relative;z-index:1}
+#loader.has3d .lbar{background:rgba(255,255,255,.22)}
+#loader.has3d .lt{color:#D8D8E0}
+#loader.has3d .lmark{animation:none}
+
+.checks a.chk{display:block;color:inherit;text-decoration:none;position:relative}.checks a.chk::after{content:"\2192";position:absolute;right:0;top:0;font-size:14px;opacity:.7;transition:transform .25s}.checks a.chk:hover{color:var(--magenta)}.checks a.chk:hover::after{transform:translateX(3px)}.checks a.chk:focus-visible{outline:2px solid var(--magenta);outline-offset:3px}
